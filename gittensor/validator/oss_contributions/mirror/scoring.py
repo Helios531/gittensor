@@ -345,8 +345,6 @@ def _calculate_pr_multipliers(scored: ScoredPR, repo_config: RepositoryConfig) -
     pr = scored.pr
     is_merged = pr.state == 'MERGED'
 
-    scored.repo_weight_multiplier = 1.0
-
     chosen_label, label_multiplier = _resolve_trusted_scoring_label(pr, repo_config)
     scored.label = chosen_label
     scored.label_multiplier = label_multiplier

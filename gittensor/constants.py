@@ -74,7 +74,6 @@ EXTENSIONLESS_FILE_EXTENSIONS = {'dockerfile', 'makefile'}
 # =============================================================================
 # Repository & PR Scoring
 # =============================================================================
-DEFAULT_REPO_EMISSION_SHARE = 0.01  # fallback share for repos not in master_repositories.json
 PR_LOOKBACK_DAYS = 35  # rolling window for scoring
 MERGED_PR_BASE_SCORE = 25
 MIN_TOKEN_SCORE_FOR_BASE_SCORE = 5  # PRs below this get 0 base score
@@ -154,9 +153,10 @@ OPEN_PR_COLLATERAL_PERCENT = 0.20
 # =============================================================================
 RECYCLE_UID = 0
 
-# Scoring pool is allocated by per-repo emission_share, then split within each
-# repo between PR scoring and issue discovery.
+# Combined scoring pool distributed by repository emission_share, then by per-repo PR/issue split.
 OSS_EMISSION_SHARE = 0.90
+DEFAULT_ISSUE_DISCOVERY_SHARE = 0.5
+EMISSION_SHARE_TOLERANCE = 1e-9
 
 # =============================================================================
 # Spam & Gaming Mitigation

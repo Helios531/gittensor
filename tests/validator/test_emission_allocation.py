@@ -10,7 +10,11 @@ from gittensor.validator.utils.load_weights import RepositoryConfig
 def _evaluation(uid: int, prs=None, issues=None) -> MinerEvaluation:
     evaluation = MinerEvaluation(uid=uid, hotkey=f'hotkey-{uid}', github_id=str(uid))
     evaluation.merged_prs = list(prs or [])
-    evaluation.discovered_issues = list(issues or [])
+    # Keep both legacy and current storage fields populated so allocation tests
+    # remain valid across cache/allocator refactors.
+    issue_list = list(issues or [])
+    evaluation.discovered_issues = issue_list
+    evaluation.issue_discovery_issues = issue_list
     return evaluation
 
 
